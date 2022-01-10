@@ -18,6 +18,9 @@ const orderModel = new mongoose.Schema({
     ],
     address: {
         type: mongoose.SchemaTypes.String
+    },
+    status: {
+        type: mongoose.SchemaTypes.String
     }
 });
 

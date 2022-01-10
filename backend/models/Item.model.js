@@ -7,6 +7,9 @@ const itemModel = new mongoose.Schema({
     description: {
         type: mongoose.SchemaTypes.String
     },
+    picture: {
+        type: mongoose.SchemaTypes.String
+    },
     options: [
         {
             type: mongoose.SchemaTypes.String
