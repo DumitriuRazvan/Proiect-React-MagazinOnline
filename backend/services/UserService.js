@@ -29,7 +29,7 @@ async function loginUser(email, password) {
         throw new Error("Incorrect email or password!");
     }
 
-    const token = jwt.sign({}, "MYSECRETKEY");
+    const token = jwt.sign({email}, "MYSECRETKEY");
 
     return token;
 }
