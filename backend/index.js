@@ -6,6 +6,7 @@ const fileRouter = require("./controllers/fileRouter");
 const User = require("./models/User.model");
 const { createAdmin } = require("./services/UserService");
 const itemRouter = require("./controllers/ItemRouter");
+const orderRouter = require("./controllers/OrderRouter");
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(express.static('public'))
 app.use(userRouter);
 app.use(fileRouter);
 app.use(itemRouter);
+app.use(orderRouter);
 
 app.listen(5000, async () => {
     await mongoose.connect("mongodb://127.0.0.1:27017");
@@ -25,7 +27,7 @@ app.listen(5000, async () => {
     });
 
     if (!admin) {
-        await createAdmin("admin@example.com", "admin");
+        await createAdmin("admin@example.com", "admin", "Admin");
         console.log("Seeded admin account");
     }
 

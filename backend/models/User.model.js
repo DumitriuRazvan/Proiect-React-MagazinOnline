@@ -3,15 +3,18 @@ const validator = require("validator");
 
 const userModel = new mongoose.Schema({
     username: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        required: true
     },
     email: {
         type: mongoose.SchemaTypes.String,
         validate: (e) => validator.isEmail(e),
+        required: true,
         unique: true
     },
     password: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        required: true
     },
     orders: [
         {
@@ -23,7 +26,8 @@ const userModel = new mongoose.Schema({
         type: mongoose.SchemaTypes.String
     },
     address: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        default: ""
     }
 });
 

@@ -2,10 +2,10 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-async function createUser(email, password) {
+async function createUser(email, password, username) {
     password = bcrypt.hashSync(password);
 
-    const user = new User({email, password, role: "user"});
+    const user = new User({email, password, role: "user", username});
 
     try {
         await user.save();
@@ -16,10 +16,10 @@ async function createUser(email, password) {
     }
 }
 
-async function createAdmin(email, password) {
+async function createAdmin(email, password, username) {
     password = bcrypt.hashSync(password);
 
-    const user = new User({email, password, role: "admin"});
+    const user = new User({email, password, role: "admin", username});
 
     try {
         await user.save();

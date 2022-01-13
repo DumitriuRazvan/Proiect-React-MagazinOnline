@@ -16,11 +16,16 @@ const orderModel = new mongoose.Schema({
             }
         }
     ],
+    total: {
+        type: mongoose.SchemaTypes.Number
+    },
     address: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        required: true
     },
     status: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        default: "Pending"
     }
 });
 

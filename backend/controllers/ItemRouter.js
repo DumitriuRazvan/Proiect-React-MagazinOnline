@@ -1,5 +1,5 @@
 const express = require("express");
-const { verifyAdmin } = require("../middlewares/auth");
+const { verifyAdmin, verifyLoggedIn } = require("../middlewares/auth");
 const { readItem, readItems, createItem, updateItem, deleteItem } = require("../services/ItemService");
 
 const itemRouter = express.Router();
@@ -28,7 +28,7 @@ itemRouter.get("/items", async (req, res) => {
 
 itemRouter.post("/item", [verifyLoggedIn, verifyAdmin],  async (req, res) => {
     try {
-        const createdItem = await createitem(req.body);
+        const createdItem = await createItem(req.body);
 
         return res.status(201).send(createdItem);
     } catch (error) {
