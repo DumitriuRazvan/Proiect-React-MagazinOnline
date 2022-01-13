@@ -16,6 +16,20 @@ async function createUser(email, password) {
     }
 }
 
+async function createAdmin(email, password) {
+    password = bcrypt.hashSync(password);
+
+    const user = new User({email, password, role: "admin"});
+
+    try {
+        await user.save();
+
+        return user;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 async function loginUser(email, password) {
     const user = await User.findOne({
         email
@@ -54,4 +68,4 @@ async function readUsers() {
     return users;
 }
 
-module.exports = {createUser, updateUser, deleteUser, readUser, readUsers, loginUser};
+module.exports = {createUser, updateUser, deleteUser, readUser, readUsers, loginUser, createAdmin};

@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const userRouter = require("./controllers/UserRouter");
 const fileRouter = require("./controllers/fileRouter");
 
+const User = require("./models/User.model");
+const { createAdmin } = require("./services/UserService");
+const itemRouter = require("./controllers/ItemRouter");
+
 const app = express();
 app.use(express.json());
 app.use(express.static('public'))
@@ -10,11 +14,20 @@ app.use(express.static('public'))
 // routers
 app.use(userRouter);
 app.use(fileRouter);
+app.use(itemRouter);
 
 app.listen(5000, async () => {
     await mongoose.connect("mongodb://127.0.0.1:27017");
 
+    // seed admin
+    const admin = await User.findOne({
+        role: "admin"
+    });
 
+    if (!admin) {
+        await createAdmin("admin@example.com", "admin");
+        console.log("Seeded admin account");
+    }
 
     console.log("App started on 5000");
 });
