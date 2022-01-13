@@ -13,7 +13,7 @@ async function verifyLoggedIn(req, res, next) {
         const pld = jwt.verify(authorization, "MYSECRETKEY");
 
         const user = await User.findOne({
-            email
+            email: pld.email
         });
 
         if (!user) {

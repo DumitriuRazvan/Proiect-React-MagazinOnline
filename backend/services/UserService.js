@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 async function createUser(email, password) {
     password = bcrypt.hashSync(password);
 
-    const user = new User({email, password});
+    const user = new User({email, password, role: "user"});
 
     try {
         await user.save();
@@ -25,7 +25,7 @@ async function loginUser(email, password) {
         throw new Error("Incorrect email or password!");
     }
 
-    if (!crypt.compareSync(password, user.password)) {
+    if (!bcrypt.compareSync(password, user.password)) {
         throw new Error("Incorrect email or password!");
     }
 
