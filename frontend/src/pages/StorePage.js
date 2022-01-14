@@ -1,11 +1,10 @@
 import Navigation from "../components/Navigation";
-import ProductCard from "../components/ProductCard";
+import ProductGrid from "../components/ProductGrid";
 
 function StorePage() {
     return (
     <>
-        <Navigation/>
-        <ProductCard/>
+        <ProductGrid/>
     </>
     );
 }

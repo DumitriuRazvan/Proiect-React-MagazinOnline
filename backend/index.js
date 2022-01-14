@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./controllers/UserRouter");
 const fileRouter = require("./controllers/fileRouter");
+const cors = require("cors");
 
 const User = require("./models/User.model");
 const { createAdmin } = require("./services/UserService");
@@ -11,6 +12,10 @@ const orderRouter = require("./controllers/OrderRouter");
 const app = express();
 app.use(express.json());
 app.use(express.static('public'))
+
+app.use(cors({
+    origin: "http://localhost:3000"
+}));
 
 // routers
 app.use(userRouter);
