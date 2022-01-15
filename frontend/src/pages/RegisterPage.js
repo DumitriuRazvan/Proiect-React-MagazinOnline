@@ -4,7 +4,8 @@ import {useGlobalState} from "../state/globalState";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
+function RegisterPage() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const state = useGlobalState();
@@ -13,11 +14,13 @@ function LoginPage() {
   const loginSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://127.0.0.1:5000/login", {
+    axios.post("http://127.0.0.1:5000/signup", {
       email,
-      password
+      password,
+      username
     }).then((r) => { 
         localStorage.setItem("token", r.data.token);
+
 
         window.location.assign("/");
     }).catch((e) => {
@@ -37,6 +40,19 @@ function LoginPage() {
         <Row className="row d-flex justify-content-center">
           <Col md={4}>
             <Form onSubmit={loginSubmit}>
+            <FormGroup className="form-group my-3">
+                <label>Username</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="UsernameInput"
+                  name="UsernameInput"
+                  placeholder="Enter username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  
+                />
+              </FormGroup>
               <FormGroup className="form-group my-3">
                 <label>Email address</label>
                 <input
@@ -73,4 +89,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
