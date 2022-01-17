@@ -27,6 +27,8 @@ const orderModel = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
         default: "Pending"
     }
+}, {
+    timestamps: true
 });
 
 const Order = mongoose.model("Order", orderModel);

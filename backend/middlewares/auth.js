@@ -37,6 +37,8 @@ async function verifyUser(req, res, next) {
 }
 
 async function verifyAdmin(req, res, next) {
+    console.log(req.user);
+
     if (req.user.role == "admin") {
         next();
     } else {
