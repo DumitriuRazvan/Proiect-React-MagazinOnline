@@ -33,7 +33,7 @@ function LoggedIn() {
     return (
     <>
         <a href="" onClick={(e) => navigateTo(e, "/profile")} className="my-1 mx-2 link-light">{`Hello, ${state.username}`}</a>
-        <Button variant="outline-light" size="sm" className="mx-2" style={{minWidth: "50px"}}><Cart/></Button>
+        {state.role == "user" && <Button variant="outline-light" onClick={(e) => navigateTo(e, "/cart")}  size="sm" className="mx-2" style={{minWidth: "50px"}}><Cart/></Button>}
         <Button variant="light" size="sm" className="mx-2" style={{minWidth: "50px"}} onClick={(e) => {
             localStorage.removeItem("token");
             window.location.assign("/");

@@ -13,7 +13,7 @@ function ProductCard({imgSrc, itemTitle, itemPrice, itemUrl}) {
                     >
                         <Card.Img
                             variant="top"
-                            src="https://i.ibb.co/L8Nrb7p/1.jpg"
+                            src={imgSrc}
                         />
                         <Card.Body>
                             <Card.Title>{itemTitle}</Card.Title>

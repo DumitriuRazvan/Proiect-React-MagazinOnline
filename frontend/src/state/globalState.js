@@ -12,12 +12,14 @@ async function getData() {
 
         return {
             loggedIn: true,
-            username: d.data.username
+            username: d.data.username,
+            role: d.data.role
         }
     } catch (error) {
         return {
             loggedIn: false,
-            username: ""
+            username: "",
+            role: ""
         }
     }
 }
@@ -50,6 +52,18 @@ export function useGlobalState() {
 
         setUsername(n) {
             state.username.set(n)
+        },
+
+        get role() {
+            if (state.promised) {
+                return "";
+            }
+
+            return state.role.get()
+        },
+
+        setRole(n) {
+            state.role.set(n)
         }
     });
 }

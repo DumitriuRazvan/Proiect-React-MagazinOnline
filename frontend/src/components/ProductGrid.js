@@ -35,7 +35,7 @@ function ProductGrid() {
                 </Row>
                 <Row xs={1} md={4} className="g-4">
                     {filteredData.map((itm, idx) => (
-                        <ProductCard key={itm._id} itemTitle={itm.name} itemPrice={itm.price} itemUrl={`/item/${itm._id}`}/>
+                        <ProductCard key={itm._id} imgSrc={itm.picture} itemTitle={itm.name} itemPrice={itm.price} itemUrl={`/item/${itm._id}`}/>
                     ))}
                 </Row>
             </Container>
